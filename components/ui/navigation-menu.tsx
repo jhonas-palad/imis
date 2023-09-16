@@ -50,19 +50,29 @@ const navigationMenuTriggerStyle = cva(
 const NavigationMenuTrigger = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Trigger> & Default
->(({ className, children, _useDefault = true, ...props }, ref) => (
+>(({ className, children, _useDefault = true, ...props }, ref) => {
+  return (
   <NavigationMenuPrimitive.Trigger
     ref={ref}
     className={cn(navigationMenuTriggerStyle(), "bg-tranparent border-0 data-[state=open]:bg-transparent hover:bg-transparent", className)}
     {...props}
   >
-    {children}{" "}
-    <ChevronDown
-      className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180"
-      aria-hidden="true"
-    />
-  </NavigationMenuPrimitive.Trigger>
-))
+    
+    {
+      !props.asChild && _useDefault ? (
+        <>
+          {children}
+          {" "}
+          <ChevronDown
+            className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180"
+            aria-hidden="true"
+          />
+        </>
+      ) : children
+    
+    }
+  </NavigationMenuPrimitive.Trigger>)
+})
 NavigationMenuTrigger.displayName = NavigationMenuPrimitive.Trigger.displayName
 
 const NavigationMenuContent = React.forwardRef<

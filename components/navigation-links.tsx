@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
-
+import Link, { LinkProps } from "next/link"
+import Image from "next/image"
 import { cn } from "@/lib/utils"
 // import { Icons } from "@/components/icons"
 import {
@@ -12,9 +12,12 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
+  NavigationMenuSub,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { NavigationMenuSub, NavigationMenuViewport } from "@radix-ui/react-navigation-menu"
+
+import { NavigationMenuContent as NavigationMenuContentPrimitive ,NavigationMenuTrigger as NavigationMenuTriggerPrimitive, NavigationMenuViewport } from "@radix-ui/react-navigation-menu"
+import { Separator } from "@ui/separator"
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -38,42 +41,146 @@ const components: { title: string; href: string; description: string }[] = [
 
 ]
 
+const popularServices : {
+  imgSrc: string;
+  label: string;
+}[]= [
+  {
+    imgSrc: '',
+    label: "Regular house cleaning",
+  },
+  {
+    imgSrc: '',
+    label: "Deep cleaning",
+  },
+  {
+    imgSrc: '',
+    label: "Window cleaning",
+  },
+  {
+    imgSrc: '',
+    label: "Garden and yard cleanup"
+  },
+  {
+    imgSrc: '',
+    label: "Garden and yard cleanup"
+  },
+  {
+    imgSrc: '',
+    label: "Garden and yard cleanup"
+  },
+  {
+    imgSrc: '',
+    label: "Garden and yard cleanup"
+  },
+  {
+    imgSrc: '',
+    label: "Garden and yard cleanup"
+  }
+];
+
+const serviceList : {href: string; label: string;}[] = [
+  {
+    href: '/login',
+    label: 'Regular House Cleaning',
+  },
+  {
+    href: '',
+    label: "Deep Cleaning"
+  },
+  {
+    href: '',
+    label: "Move-In/Move-Out Cleaning"
+  },
+  {
+    href: '',
+    label: "Move-In/Move-Out Cleaning"
+  },
+  {
+    href: '',
+    label: "Window Cleaning"
+  },
+  {
+    href: '',
+    label: "Move-In/Move-Out Cleaning"
+  },
+  {
+    href: '',
+    label: "Carpet Cleaning"
+  },
+  {
+    href: '',
+    label: "Carpet Cleaning"
+  },
+  {
+    href: '',
+    label: "Carpet Cleaning"
+  },
+]
 export function NavigationLinks() {
   return (
-    <NavigationMenu>
+    <NavigationMenu defaultChecked >
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>
             Find worker
           </NavigationMenuTrigger>
-          <NavigationMenuContent>
-              <ul className="grid w-full gap-3 p-4 md:grid-cols-2">
-                <li className="row-span-3">
-                  <NavigationMenuLink asChild>
-                    <a
-                      className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                      href="/"
-                    >
-                    
-                      <div className="mb-2 mt-4 text-lg font-medium">
-                        Find a worker
-                      </div>
-                      <p className="text-sm leading-tight text-muted-foreground">
-                      Welcome, valued clients!
-                      </p>
-                    </a>
-                  </NavigationMenuLink>
-                </li>
-                <ListItem href="/" title="Post a job service">
-                Ready to get your task done? Tell us what you need, and we&apos;ll find the right service provider for you.
-                </ListItem>
-                <ListItem href="/" title="Service Categories">
-                  Explore a wide range of specialized service categories to meet your unique needs
-                </ListItem>
-                <ListItem href="/" title="Testimonials">
-                Discover what our satisfied customers are saying about their experiences with our platform and services.
-                </ListItem>
-              </ul>
+          <NavigationMenuContent className="max-h-max">
+            <NavigationMenuSub defaultValue="1" className="relative grid grid-cols-[minmax(0,0.5fr)_5px_minmax(0,1fr)] gap-6 min-h-[250px] w-full p-3">
+              <NavigationMenuList _useDefault={false} className="mt-2 w-full absolute flex flex-col gap-2 justify-start items-stretch">
+                <NavigationMenuItem value="1">
+                  
+                  <SubTriggerLinks title="Post a job">
+                    Let Service Providers Know Your Needs
+                  </SubTriggerLinks>
+                  <SubMenuContent
+                    title="Post a job"
+                    link={{href:'/', children: 'Get started'}} 
+                    desc="Ready to get your task done? Tell us what you need, and we'll find the right service provider for you. Here's list of our top booked services.">
+                    <div className="flex flex-wrap items-start gap-3">
+                      {
+                        popularServices.map(({imgSrc, label}, index)=>{
+                          return (
+                            <div key={index} className="border-[1px] items-center shadow-md rounded-md text-accent-foreground grid xl:grid-rows-[110px_80px] xl:grid-cols-[130px] lg:grid-rows-[100px] lg:grid-cols-[100px_120px] md:grid-rows-[90px] md:grid-cols-[90px_120px] duration-100 hover:scale-105">
+                              <Image className="object-contain h-full w-full bg-brand-primary-400 " src={imgSrc} alt=""/>
+                              <div className="p-2">
+                                <strong className="text-sm font-medium text-zinc-700">{label}</strong>
+                              </div>
+                            </div>
+                          )
+                        })
+                      }
+                    </div>
+                  </SubMenuContent>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem value="2">
+                  <SubTriggerLinks title="Services">
+                    List of services
+                  </SubTriggerLinks>
+                  <SubMenuContent
+                    title="List of services"
+                    link={{href:'/', children: 'View all'}} 
+                    desc="Ready to get your task done? Tell us what you need, and we'll find the right service provider for you. Here's list of our top booked services.">
+                    <div className="grid mx-auto xl:grid-cols-1 lg:grid-cols-2 grid-cols-1 gap-5">
+                      {
+                        serviceList.map(({href, label},index) => {
+                          return (
+                            <Link key={index} className="text-zinc-500/70 text-sm hover:text-zinc-600" href={href}>
+                              {label}
+                            </Link>
+                          )
+                        })
+                      }
+                    </div>
+                  </SubMenuContent>
+                </NavigationMenuItem>
+
+              </NavigationMenuList>
+              <Separator orientation="vertical"/>
+              <NavigationMenuViewport/>
+            </NavigationMenuSub>
+          
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
@@ -103,6 +210,53 @@ export function NavigationLinks() {
     </NavigationMenu>
   )
 }
+
+ 
+const SubTriggerLinks = React.forwardRef<
+  React.ElementRef<typeof NavigationMenuTriggerPrimitive>,
+  React.ComponentPropsWithoutRef<typeof NavigationMenuTriggerPrimitive> 
+> (({title, children}, ref) => (
+  <NavigationMenuTriggerPrimitive ref={ref}
+    className={cn(navigationMenuTriggerStyle(),"whitespace-pre-wrap flex flex-col items-start text-left h-full w-full select-none space-y-1 rounded-md leading-none no-underline outline-none transition-colors data-[active]:bg-accent/50 data-[state=open]:bg-zinc-200/50")}>
+    <div className="text-sm font-medium leading-none">{title}</div>
+    <p className="line-clamp-2 text-sm leading-snug text-brand-primary-500">
+      {children}
+    </p>
+  </NavigationMenuTriggerPrimitive>
+))
+
+SubTriggerLinks.displayName = NavigationMenuTriggerPrimitive.displayName
+
+
+type SubMenuContentExtras = {
+  title: string;
+  desc: string;
+  link: Omit<LinkProps, 'className'> & {children : string};
+}
+
+const SubMenuContent = React.forwardRef<
+  React.ElementRef<typeof NavigationMenuContentPrimitive>,
+  React.ComponentPropsWithoutRef<typeof NavigationMenuContentPrimitive> & SubMenuContentExtras
+>(({children, title, desc, link ,...props}, ref) => (
+  <NavigationMenuContentPrimitive 
+    ref={ref} 
+    className="w-full grid xl:grid-cols-[0.4fr_1fr] lg:grid-rows-[0.4fr_auto] gap-6 p-3 "
+    {...props}
+  >
+    <div className="flex flex-col gap-3">
+    <p className="text-base font-semibold">{title}</p>
+    <p className="text-sm leading-snug text-muted-foreground">
+      {desc}
+    </p>
+    <Link className="text-sm font-light underline" href="/">
+      {link?.children ?? 'No link'}
+    </Link>
+    </div>
+    {children}
+  </NavigationMenuContentPrimitive>
+)) 
+
+SubMenuContent.displayName = NavigationMenuContentPrimitive.displayName
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
