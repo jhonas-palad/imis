@@ -46,6 +46,8 @@ const config: Config = {
             100: "#87ffa2"
           }
         },
+        "body-color": "hsl(var(--body-bg))",
+        spinner: "hsl(var(--spinner-stroke-color))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -86,6 +88,7 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes:{
+        
         "accordion-down": {
           from: { height: '0' },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -94,6 +97,7 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: '0' },
         },
+
         enterFromRight: {
           from: { opacity: "0", transform: 'translateX(200px)' },
           to: { opacity: "1", transform: 'translateX(0)' },

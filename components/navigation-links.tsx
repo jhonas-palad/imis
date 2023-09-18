@@ -18,6 +18,7 @@ import {
 
 import { NavigationMenuContent as NavigationMenuContentPrimitive ,NavigationMenuTrigger as NavigationMenuTriggerPrimitive, NavigationMenuViewport } from "@radix-ui/react-navigation-menu"
 import { Separator } from "@ui/separator"
+import DraggbleScreenSizeIndicator from "./draggble-screensize-indicator"
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -117,97 +118,109 @@ const serviceList : {href: string; label: string;}[] = [
     label: "Carpet Cleaning"
   },
 ]
+
+const navItemVal : {[key:string] : string} = {
+  MENU1: 'menu1',
+  MENU2: 'menu2',
+  SUBMENU1: 'submenu1',
+  SUBMENU2: 'submenu2'
+}
+
 export function NavigationLinks() {
+  const [submenuValue, setSubmenuValue] = React.useState<string>(navItemVal.SUBMENU1)
   return (
-    <NavigationMenu defaultChecked >
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>
-            Find worker
-          </NavigationMenuTrigger>
-          <NavigationMenuContent className="max-h-max">
-            <NavigationMenuSub defaultValue="1" className="relative grid grid-cols-[minmax(0,0.5fr)_5px_minmax(0,1fr)] gap-6 min-h-[250px] w-full p-3">
-              <NavigationMenuList _useDefault={false} className="mt-2 w-full absolute flex flex-col gap-2 justify-start items-stretch">
-                <NavigationMenuItem value="1">
-                  
-                  <SubTriggerLinks title="Post a job">
-                    Let Service Providers Know Your Needs
-                  </SubTriggerLinks>
-                  <SubMenuContent
-                    title="Post a job"
-                    link={{href:'/', children: 'Get started'}} 
-                    desc="Ready to get your task done? Tell us what you need, and we'll find the right service provider for you. Here's list of our top booked services.">
-                    <div className="flex flex-wrap items-start gap-3">
-                      {
-                        popularServices.map(({imgSrc, label}, index)=>{
-                          return (
-                            <div key={index} className="border-[1px] items-center shadow-md rounded-md text-accent-foreground grid xl:grid-rows-[110px_80px] xl:grid-cols-[130px] lg:grid-rows-[100px] lg:grid-cols-[100px_120px] md:grid-rows-[90px] md:grid-cols-[90px_120px] duration-100 hover:scale-105">
-                              <Image className="object-contain h-full w-full bg-brand-primary-400 " src={imgSrc} alt=""/>
-                              <div className="p-2">
-                                <strong className="text-sm font-medium text-zinc-700">{label}</strong>
+    <>
+      <DraggbleScreenSizeIndicator/>
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>
+              Find worker
+            </NavigationMenuTrigger>
+            <NavigationMenuContent className="max-h-max">
+              <NavigationMenuSub defaultValue={navItemVal.SUBMENU1} value={submenuValue} onValueChange={(e)=> setSubmenuValue(e)} className="relative grid grid-cols-[minmax(0,0.5fr)_5px_minmax(0,1fr)] gap-6 min-h-[250px] w-full p-3">
+                <NavigationMenuList _useDefault={false} className="mt-2 w-full absolute flex flex-col gap-2 justify-start items-stretch">
+                  <NavigationMenuItem value={navItemVal.SUBMENU1}>
+                    
+                    <SubTriggerLinks title="Post a job">
+                      Let Service Providers Know Your Needs
+                    </SubTriggerLinks>
+                    <SubMenuContent
+                      title="Post a job"
+                      link={{href:'/', children: 'Get started'}} 
+                      desc="Ready to get your task done? Tell us what you need, and we'll find the right service provider for you. Here's list of our top booked services.">
+                      <div className="flex flex-wrap items-start gap-3">
+                        {
+                          popularServices.map(({imgSrc, label}, index)=>{
+                            return (
+                              <div key={index} className="border-[1px] items-center shadow-md rounded-md text-accent-foreground grid xl:grid-rows-[100px_80px] xl:grid-cols-[120px] lg:grid-rows-[80px] lg:grid-cols-[80px_120px] md:grid-rows-[75px] md:grid-cols-[80px_110px] duration-100 hover:scale-105">
+                                <Image className="object-contain h-full w-full bg-brand-primary-400 " src={imgSrc} alt=""/>
+                                <div className="p-2">
+                                  <strong className="text-sm font-medium text-zinc-700">{label}</strong>
+                                </div>
                               </div>
-                            </div>
-                          )
-                        })
-                      }
-                    </div>
-                  </SubMenuContent>
-                </NavigationMenuItem>
+                            )
+                          })
+                        }
+                      </div>
+                    </SubMenuContent>
+                  </NavigationMenuItem>
 
-                <NavigationMenuItem value="2">
-                  <SubTriggerLinks title="Services">
-                    List of services
-                  </SubTriggerLinks>
-                  <SubMenuContent
-                    title="List of services"
-                    link={{href:'/', children: 'View all'}} 
-                    desc="Ready to get your task done? Tell us what you need, and we'll find the right service provider for you. Here's list of our top booked services.">
-                    <div className="grid mx-auto xl:grid-cols-1 lg:grid-cols-2 grid-cols-1 gap-5">
-                      {
-                        serviceList.map(({href, label},index) => {
-                          return (
-                            <Link key={index} className="text-zinc-500/70 text-sm hover:text-zinc-600" href={href}>
-                              {label}
-                            </Link>
-                          )
-                        })
-                      }
-                    </div>
-                  </SubMenuContent>
-                </NavigationMenuItem>
+                  <NavigationMenuItem value={navItemVal.SUBMENU2}>
+                    <SubTriggerLinks title="Services">
+                      List of services
+                    </SubTriggerLinks>
+                    <SubMenuContent
+                      title="List of services"
+                      link={{href:'/', children: 'View all'}} 
+                      desc="Ready to get your task done? Tell us what you need, and we'll find the right service provider for you. Here's list of our top booked services.">
+                      <div className="grid mx-auto xl:grid-cols-1 lg:grid-cols-2 grid-cols-1 gap-5">
+                        {
+                          serviceList.map(({href, label},index) => {
+                            return (
+                              <Link key={index} className="text-zinc-500/70 text-sm hover:text-zinc-600" href={href}>
+                                {label}
+                              </Link>
+                            )
+                          })
+                        }
+                      </div>
+                    </SubMenuContent>
+                  </NavigationMenuItem>
 
-              </NavigationMenuList>
-              <Separator orientation="vertical"/>
-              <NavigationMenuViewport/>
-            </NavigationMenuSub>
-          
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Be a worker</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-full gap-3 p-4 md:grid-cols-2 lg:grid-cols-3">
-              {components.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                >
-                  {component.description}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              About us
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+                </NavigationMenuList>
+                <Separator orientation="vertical"/>
+                <NavigationMenuViewport/>
+              </NavigationMenuSub>
+            
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>Be a worker</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid w-full gap-3 p-4 md:grid-cols-2 lg:grid-cols-3">
+                {components.map((component) => (
+                  <ListItem
+                    key={component.title}
+                    title={component.title}
+                    href={component.href}
+                  >
+                    {component.description}
+                  </ListItem>
+                ))}
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="/docs" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                About us
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+    </>
   )
 }
 

@@ -1,7 +1,8 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
-
+import {Theme} from '@radix-ui/themes';
+import { cn } from '@/lib/utils';
 const poppins = Poppins({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] })
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 const RootLayout: React.FC<{children: React.ReactNode}> = ({children}) => {
   return (
     <html lang="en">
-      <body className={poppins.className}>
+      <body className={cn("bg-body-color",poppins.className)}>
         {children}
       </body>
     </html>

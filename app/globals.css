@@ -4,8 +4,10 @@
  
 @layer base {
   :root {
+    --spinner-stroke-color: 214, 97%, 59%;
+    --body-bg: 0 0% 96%;
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 240 10% 3.5%;
 
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
@@ -73,4 +75,46 @@
   body {
     @apply bg-background text-foreground;
   }
+  input{
+    @apply outline-none;
+    outline: none;
+  }
+  svg#spinner {
+    width: 2.5rem;
+    transform-origin: center;
+    animation: rotate4 2s linear infinite;
+   }
+   
+   svg#spinner circle {
+    fill: none;
+    stroke: hsl(214, 97%, 59%);
+    stroke-width: 5;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash4 1.5s ease-in-out infinite;
+   }
+   
+   @keyframes rotate4 {
+    100% {
+     transform: rotate(360deg);
+    }
+   }
+   
+   @keyframes dash4 {
+    0% {
+     stroke-dasharray: 1, 200;
+     stroke-dashoffset: 0;
+    }
+   
+    50% {
+     stroke-dasharray: 90, 700;
+     stroke-dashoffset: -35px;
+    }
+   
+    100% {
+     stroke-dashoffset: -125px;
+    }
+   }
+   
 }
