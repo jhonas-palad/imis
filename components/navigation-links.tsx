@@ -2,9 +2,11 @@
 
 import * as React from "react"
 import Link, { LinkProps } from "next/link"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@ui/collapsible"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
-// import { Icons } from "@/components/icons"
+import { Button } from "@ui/button"
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -19,6 +21,7 @@ import {
 import { NavigationMenuContent as NavigationMenuContentPrimitive ,NavigationMenuTrigger as NavigationMenuTriggerPrimitive, NavigationMenuViewport } from "@radix-ui/react-navigation-menu"
 import { Separator } from "@ui/separator"
 import DraggbleScreenSizeIndicator from "./draggble-screensize-indicator"
+import { ChevronDown } from "lucide-react"
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -126,12 +129,13 @@ const navItemVal : {[key:string] : string} = {
   SUBMENU2: 'submenu2'
 }
 
+
 export function NavigationLinks() {
   const [submenuValue, setSubmenuValue] = React.useState<string>(navItemVal.SUBMENU1)
   return (
     <>
       <DraggbleScreenSizeIndicator/>
-      <NavigationMenu>
+      <NavigationMenu className="hidden lg:block">
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger>
