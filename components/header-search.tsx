@@ -34,10 +34,10 @@ const HeaderSearch = () => {
 
   return (
     <div className='relative'>
-      <Button variant='ghost' className='md:hidden flex justify-center items-center shrink-0 opacity-50 '>
+      <Button size='icon' variant='ghost' className='md:hidden flex justify-center items-center shrink-0 opacity-50 '>
         <Search size="1rem"/>
       </Button>
-      <Command className='md:block hidden' ref={cmdRef}>
+      <Command className='md:block hidden bg-white overflow-hidden' ref={cmdRef}>
         <CommandInput value={searchInput} onValueChange={(val) => setSearchInput(val)} placeholder='Search' onFocus={() => setShowList(true)}/>
         <CommandList hidden={!showList || !searchInput } className='px-2 py-2 absolute w-full top-full bg-background rounded-md shadow-md'>
           <CommandGroup heading="Results">

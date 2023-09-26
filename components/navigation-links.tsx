@@ -2,10 +2,8 @@
 
 import * as React from "react"
 import Link, { LinkProps } from "next/link"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@ui/collapsible"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
-import { Button } from "@ui/button"
 
 import {
   NavigationMenu,
@@ -20,107 +18,8 @@ import {
 
 import { NavigationMenuContent as NavigationMenuContentPrimitive ,NavigationMenuTrigger as NavigationMenuTriggerPrimitive, NavigationMenuViewport } from "@radix-ui/react-navigation-menu"
 import { Separator } from "@ui/separator"
-import DraggbleScreenSizeIndicator from "./draggble-screensize-indicator"
-import { ChevronDown } from "lucide-react"
+import { HEADER_LINKS, Link as LinkType, Content } from "@/constants/content"
 
-const components: { title: string; href: string; description: string }[] = [
-  {
-    title: "Look for a job",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "Explore job opportunities posted by clients seeking services like yours.",
-  },
-  {
-    title: "Learn how to get hired",
-    href: "/docs/primitives/hover-card",
-    description:
-      "Discover essential tips and strategies to increase your chances of getting hired for your services.",
-  },
-  {
-    title: "Progress",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-
-]
-
-const popularServices : {
-  imgSrc: string;
-  label: string;
-}[]= [
-  {
-    imgSrc: '',
-    label: "Regular house cleaning",
-  },
-  {
-    imgSrc: '',
-    label: "Deep cleaning",
-  },
-  {
-    imgSrc: '',
-    label: "Window cleaning",
-  },
-  {
-    imgSrc: '',
-    label: "Garden and yard cleanup"
-  },
-  {
-    imgSrc: '',
-    label: "Garden and yard cleanup"
-  },
-  {
-    imgSrc: '',
-    label: "Garden and yard cleanup"
-  },
-  {
-    imgSrc: '',
-    label: "Garden and yard cleanup"
-  },
-  {
-    imgSrc: '',
-    label: "Garden and yard cleanup"
-  }
-];
-
-const serviceList : {href: string; label: string;}[] = [
-  {
-    href: '/login',
-    label: 'Regular House Cleaning',
-  },
-  {
-    href: '',
-    label: "Deep Cleaning"
-  },
-  {
-    href: '',
-    label: "Move-In/Move-Out Cleaning"
-  },
-  {
-    href: '',
-    label: "Move-In/Move-Out Cleaning"
-  },
-  {
-    href: '',
-    label: "Window Cleaning"
-  },
-  {
-    href: '',
-    label: "Move-In/Move-Out Cleaning"
-  },
-  {
-    href: '',
-    label: "Carpet Cleaning"
-  },
-  {
-    href: '',
-    label: "Carpet Cleaning"
-  },
-  {
-    href: '',
-    label: "Carpet Cleaning"
-  },
-]
 
 const navItemVal : {[key:string] : string} = {
   MENU1: 'menu1',
@@ -129,33 +28,43 @@ const navItemVal : {[key:string] : string} = {
   SUBMENU2: 'submenu2'
 }
 
+const customerContents : Content[] = HEADER_LINKS[0].content as Content[]
+const beAWorkerLinks : LinkType[] = HEADER_LINKS[1].links as LinkType[]
 
 export function NavigationLinks() {
-  const [submenuValue, setSubmenuValue] = React.useState<string>(navItemVal.SUBMENU1)
+  const [submenuValue, setSubmenuValue] = React.useState<string>(customerContents[0].id)
   return (
     <>
-      <DraggbleScreenSizeIndicator/>
       <NavigationMenu className="hidden lg:block">
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger>
-              Find worker
+              {HEADER_LINKS[0].label}
             </NavigationMenuTrigger>
-            <NavigationMenuContent className="max-h-max">
-              <NavigationMenuSub defaultValue={navItemVal.SUBMENU1} value={submenuValue} onValueChange={(e)=> setSubmenuValue(e)} className="relative grid grid-cols-[minmax(0,0.5fr)_5px_minmax(0,1fr)] gap-6 min-h-[250px] w-full p-3">
+            <NavigationMenuContent>
+              <NavigationMenuSub defaultValue={customerContents[0].id} value={submenuValue} onValueChange={(e)=> setSubmenuValue(e)} className="relative grid grid-cols-[minmax(0,0.5fr)_5px_minmax(0,1fr)] gap-6 min-h-[250px] w-full p-3">
                 <NavigationMenuList _useDefault={false} className="mt-2 w-full absolute flex flex-col gap-2 justify-start items-stretch">
-                  <NavigationMenuItem value={navItemVal.SUBMENU1}>
-                    
-                    <SubTriggerLinks title="Post a job">
-                      Let Service Providers Know Your Needs
+                  <NavigationMenuItem value={customerContents[0].id}>
+                   
+                    <SubTriggerLinks title={customerContents[0].label }>
+                      {customerContents[0].description}
                     </SubTriggerLinks>
                     <SubMenuContent
-                      title="Post a job"
-                      link={{href:'/', children: 'Get started'}} 
-                      desc="Ready to get your task done? Tell us what you need, and we'll find the right service provider for you. Here's list of our top booked services.">
+                      title={customerContents[0].description as string}
+                      link={{
+                        href:customerContents[0].content?.link?.href as string, 
+                        children: customerContents[0].content?.link?.label as string
+                      }} 
+                      desc={customerContents[0].content?.description as string}>
                       <div className="flex flex-wrap items-start gap-3">
                         {
-                          popularServices.map(({imgSrc, label}, index)=>{
+                          [
+                            {imgSrc: '', label: "Service 1"},
+                            {imgSrc: '', label: "Service 2"},
+                            {imgSrc: '', label: "Service 3"},
+                            {imgSrc: '', label: "Service 4"},
+                            {imgSrc: '', label: "Service 5"},
+                          ].map(({imgSrc, label}, index)=>{
                             return (
                               <div key={index} className="border-[1px] items-center shadow-md rounded-md text-accent-foreground grid xl:grid-rows-[100px_80px] xl:grid-cols-[120px] lg:grid-rows-[80px] lg:grid-cols-[80px_120px] md:grid-rows-[75px] md:grid-cols-[80px_110px] duration-100 hover:scale-105">
                                 <Image className="object-contain h-full w-full bg-brand-primary-400 " src={imgSrc} alt=""/>
@@ -170,17 +79,26 @@ export function NavigationLinks() {
                     </SubMenuContent>
                   </NavigationMenuItem>
 
-                  <NavigationMenuItem value={navItemVal.SUBMENU2}>
-                    <SubTriggerLinks title="Services">
-                      List of services
+                  <NavigationMenuItem value={customerContents[1].id}>
+                    <SubTriggerLinks title={customerContents[1].label}>
+                      {customerContents[1].description}
                     </SubTriggerLinks>
                     <SubMenuContent
-                      title="List of services"
-                      link={{href:'/', children: 'View all'}} 
-                      desc="Ready to get your task done? Tell us what you need, and we'll find the right service provider for you. Here's list of our top booked services.">
+                      title={customerContents[1].description as string}
+                      link={{
+                        href:customerContents[1].content?.link?.href as string, 
+                        children: customerContents[1].content?.link?.label as string
+                      }} 
+                      desc={customerContents[1].content?.description as string}>
                       <div className="grid mx-auto xl:grid-cols-1 lg:grid-cols-2 grid-cols-1 gap-5">
                         {
-                          serviceList.map(({href, label},index) => {
+                          [
+                            {href: '', label: "Service 1"},
+                            {href: '', label: "Service 3"},
+                            {href: '', label: "Service 2"},
+                            {href: '', label: "Service 4"},
+                            {href: '', label: "Service 5"},
+                          ].map(({href, label},index) => {
                             return (
                               <Link key={index} className="text-zinc-500/70 text-sm hover:text-zinc-600" href={href}>
                                 {label}
@@ -200,25 +118,27 @@ export function NavigationLinks() {
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuTrigger>Be a worker</NavigationMenuTrigger>
+            <NavigationMenuTrigger>
+              {HEADER_LINKS[1].label}
+            </NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-full gap-3 p-4 md:grid-cols-2 lg:grid-cols-3">
-                {components.map((component) => (
+                {beAWorkerLinks.map((link) => (
                   <ListItem
-                    key={component.title}
-                    title={component.title}
-                    href={component.href}
+                    key={link.label}
+                    title={link.label}
+                    href={link.href as string}
                   >
-                    {component.description}
+                    {link.description}
                   </ListItem>
                 ))}
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link href="/docs" legacyBehavior passHref>
+            <Link href={HEADER_LINKS[2].href as string} legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                About us
+                {HEADER_LINKS[2].label}
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>

@@ -9,27 +9,25 @@ import { AccordionMenuLinks } from '@/components/accordion-menu-links';
 
 import { 
   Sheet,
-  SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger, 
 } from './ui/sheet';
 import { Menu } from 'lucide-react';
 import HeaderSearch from './header-search';
-
+import { Separator } from '@ui/separator';
+import DraggbleScreenSizeIndicator from './draggble-screensize-indicator';
 const Header: React.FC= () => {
   return (
-    <>
-    <header className='sticky border-0 border-b-[1px] z-[99] py-3 bg-white top-0 flex'>
+    <header className='sticky border-0 z-[99] py-3 bg-transparent top-0 flex backdrop-blur-lg shadow-sm'>
+      {/* <DraggbleScreenSizeIndicator/> */}
       <div className='flex relative justify-between items-center w-full lg:px-3 px-4'>
         <div className="flex items-center">
             <Sheet>
               <SheetTrigger className='lg:hidden' asChild>
-                <Button variant="outline" className='px-2 h-9 items-center'>
-                  <Menu size="1.2rem"/>
+                <Button size='icon' variant="ghost">
+                  <Menu size="1rem"/>
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className='z-[200] lg:hidden w-full sm:max-w-none p-0 overflow-auto'>
@@ -41,13 +39,11 @@ const Header: React.FC= () => {
                   </SheetTitle>
                 </SheetHeader>
                 <AccordionMenuLinks/>
-                {/* <CollapsibleLinks/> */}
-
-                {/* <div className=' flex flex-col gap-4 mt-3'>
-                  <Button className='text-sm bg-brand-primary-400 hover:bg-brand-primary-400/70'>Sign in</Button>
-                  <p className='text-center'>or</p>
-                  <Button variant="outline">Sign up</Button>
-                </div> */}
+                <Separator/>
+                <div className='mt-6 flex items-center justify-center'>
+                  <Button size='lg' className='text-sm bg-brand-primary-400 hover:bg-brand-primary-400/70 mr-2'>Sign in</Button>
+                  <Button size='lg' variant="outline">Sign up</Button>
+              </div>
               </SheetContent>
             </Sheet>
           <Link className='mx-3' href="/">
@@ -59,15 +55,13 @@ const Header: React.FC= () => {
           <HeaderSearch/>
           <div className='items-center lg:flex hidden'>
             <div className='self-end flex items-center'>
-              <Button className='text-sm bg-brand-primary-400 hover:bg-brand-primary-400/70 mr-2'>Sign in</Button>
-              <Button variant="outline">Sign up</Button>
+              <Button size="sm" className='text-sm bg-brand-primary-400 hover:bg-brand-primary-400/70 mr-2'>Sign in</Button>
+              <Button size="sm" variant="outline">Sign up</Button>
             </div>
           </div>
         </div>
       </div>
     </header>
-    </>
-    
   )
 }
 

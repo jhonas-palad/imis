@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 const poppins = Poppins({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] })
 
 export const metadata: Metadata = {
-  title: 'IMIS - IMIS - Your Professional Cleaning Service',
+  title: 'IMIS - Your Professional Cleaning Service Platform',
   description: 'IMIS provides professional cleaning services for homes and businesses. We offer residential and commercial solutions to keep your spaces sparkling clean. Book your cleaning service today.',
   viewport: 'width=device-width, initial-scale=1.0',
   keywords: 'cleaning service, professional cleaners, residential cleaning, commercial cleaning, house cleaning, office cleaning, IMIS, imisin, batangas cleaning service',
