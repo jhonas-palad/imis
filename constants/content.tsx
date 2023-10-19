@@ -23,11 +23,11 @@ export type Link = {
 export const HEADER_LINKS: Link[]  = [
   {
     id: '1',
-    label: 'Customer',
+    label: 'Find a pro',
     content: [
       {
         id: '1.1',
-        label: 'Hire a service',
+        label: 'Hire a pro',
         description: 'Get it done, in your way',
         content: {
           label: 'Get it done, in your way',
@@ -55,7 +55,7 @@ export const HEADER_LINKS: Link[]  = [
   },
   {
     id: '2',
-    label: 'Be a worker',
+    label: 'Be a professional',
     links: [
       {
         id:'2.1',

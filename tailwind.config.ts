@@ -16,6 +16,10 @@ const config: Config = {
       }
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-poppins)"],
+        serif: ["var(--font-lora)"]
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -23,28 +27,11 @@ const config: Config = {
       },
       colors:{
         brand: {
-          primary: {
-            900: "#244A4C",
-            800: "#306366",
-            700: "#3D7C7F",
-            600: "#499599",
-            500: "#55AEB2",
-            400: "#61C7CC",
-            300: "#6DE0E5",
-            200: "#7AF9FF",
-            100: "#94faff",
-          },
-          secondary: {
-            900: "#1b3320",
-            800: "#284c30",
-            700: "#366640",
-            600: "#437f51",
-            500: "#519961",
-            400: "#5eb271",
-            300: "#6ccc81",
-            200: "#79e591",
-            100: "#87ffa2"
-          }
+          foreground: "#525042",
+          primary:"#FE9D02",
+          secondary: "#D8E1DF",
+          accent: "#3AB1D0",
+          tertiary: "#DE670F",
         },
         "body-color": "hsl(var(--body-bg))",
         spinner: "hsl(var(--spinner-stroke-color))",

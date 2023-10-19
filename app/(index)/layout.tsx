@@ -8,15 +8,13 @@ const IndexLayout: React.FC<{
 }> = ({children}) => {
   return (
     <>
-    <div className='relative h-full'>
-        <Header/>
-      <div className="h-full min-h-[100vh]">
+      <Header/>
+      <div className="min-h-[100vh]">
         <main className='relative'>
           {children}
         </main>
       </div>
-    </div>
-    <footer>This is footer</footer>
+      <footer>This is footer</footer>
     </>
   )
 }

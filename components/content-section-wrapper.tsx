@@ -5,15 +5,15 @@ type PreTitleDescriptionProps = {
   preTitle ?: string;
   title?: string;
   description?: string;
-  position: "center" | "right" | "left"
+  position?: "center" | "right" | "left"
 }
-const PreTitleDescription : React.FC<PreTitleDescriptionProps> = ({
+export const PreTitleDescription : React.FC<PreTitleDescriptionProps> = ({
   preTitle, title, description, position = "center"
 }) => (
-  <div className={`w-full block text-${position}`}>
+  <div className={`container pl-0 block md:text-${position} text-center`}>
     {
       preTitle && (
-        <p className='text-sm font-semibold text-brand-primary-700 mb-1'>{preTitle}</p>
+        <p className='text-violet-600 text-sm font-semibold text-brand-primary-700 mb-1'>{preTitle}</p>
       )
     }
     {
@@ -32,17 +32,16 @@ const PreTitleDescription : React.FC<PreTitleDescriptionProps> = ({
 
 const ContentSectionWrapper = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & PreTitleDescriptionProps
->(({children, className, ...props},ref)=>(
-  <div ref={ref} className={cn('min-h-[100vh] pt-10', className)}>
-    <div className={cn('mx-auto w-3/4')}>
-      {
-        (props.title || props.description || props.preTitle) && (
-          <PreTitleDescription position="center" title={props.title} description={props.description} preTitle={props.preTitle}/>
-        ) 
-      }
-      {children}
-    </div>
+  React.HTMLAttributes<HTMLDivElement>  & {asChild?:boolean}
+>(({children, className, asChild = false, ...props},ref)=>(
+  <div ref={ref} role='section-wrapper' className={cn('', className)}>
+    {
+      !asChild ? (
+        <div className={cn('mx-auto px-2 w-full xl:w-[85%] lg:w-[90%]')}>
+          {children}
+        </div>
+      ): children
+    }
   </div>
 ))
 
