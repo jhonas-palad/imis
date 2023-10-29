@@ -32,7 +32,7 @@ const InputWithLabelError = React.forwardRef<HTMLInputElement, InputLabelErrorPr
   ({label,errors, className ,...inputProps}, ref) => {
     return (
       <div className='flex flex-col gap-2 text-start py-2'>
-        <label className='text-sm font-medium'>{label}</label>
+        <label className='text-sm font-normal'>{label}</label>
         <Input
         ref={ref}
           className={cn('shadow-none', className)}

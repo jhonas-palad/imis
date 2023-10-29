@@ -7,8 +7,8 @@ import {useForm} from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { Checkbox } from '@/components/ui/checkbox'
-import { Separator } from '@/components/ui/separator'
 import googleLogo from '@/public/svg/google-logo.svg'
+import SeparatorText from '@/components/separator-text'
 const Login = () => {
   const {
     register,
@@ -24,7 +24,7 @@ const Login = () => {
         console.log(`data=${(JSON.stringify(data))}`)
       })}
        className='container text-center text-foreground max-sm:px-3 flex flex-col gap-6'>
-        <h1 className='text-2xl font-medium'>Sign in to imis</h1>
+        <h1 className='text-2xl font-medium font-serif'>Sign in to imis</h1>
         <div className='block'>
           <InputWithLabelError
           className='focus-visible:border-primary'
@@ -54,23 +54,17 @@ const Login = () => {
               Remember me
             </label>
           </div>
-          <Link className='text-blue-500 text-sm font-semibold' href='#'>Forgot password?</Link>
+          <Link className='text-secondary text-sm font-semibold' href='#'>Forgot password?</Link>
         </div>
         <Button size="lg" className='w-full rounded-full' type='submit'>Submit</Button>
         <div className='flex flex-col gap-12 mt-4'>
-          <div className='relative'>
-            <Separator/>
-            <span className='text-sm bg-background px-2 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>or</span>
-          </div>
-          <Button size="lg" variant='outline' className='rounded-full relative border-[1.5px]'>
+          <SeparatorText text="or"/>
+          <Button disabled size="lg" variant='outline' className='rounded-full relative border-[1.5px]'>
             <Image src={googleLogo} alt="google-logo" className='w-5 absolute left-2 top-1/2 -translate-y-1/2'/>
             Sign in with Google
           </Button>
-          <div className='relative'>
-            <Separator/>
-            <span className='text-sm bg-background px-2 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>Don&apos;t have an account?</span>
-          </div>
-          <Button size="lg" variant="outline" className='self-center rounded-full border-primary text-primary border-[1.5px]'>Sign up</Button>
+          <SeparatorText text="Don't have an account"/>
+          <Link href="" className='py-2 px-4 text-sm self-center rounded-full border-primary text-primary border-2 hover:bg-transparent hover:opacity-60'>Sign up</Link>
         </div>
       </form>
     </div>
