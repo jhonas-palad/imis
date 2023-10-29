@@ -11,16 +11,20 @@
 
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
- 
+
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
- 
-    --primary: 272 72% 47%;
+
+    --main: 199.2, 77.4%, 73.9%; /*Baby blue*/
+
+    --primary: 240 100% 25.1%; /*Navy blue*/
     --primary-foreground: 0 0% 98%;
- 
-    --secondary: 240 4.8% 95.9%;
+
+    --secondary: 206.5, 96.2%, 41.6%; /* Blue grotto */
     --secondary-foreground: 240 5.9% 10%;
- 
+    
+    --accent: 191.8, 86.9%, 39%; /* Blue green */
+
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
  

@@ -26,18 +26,13 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors:{
-        brand: {
-          foreground: "#525042",
-          primary:"#FE9D02",
-          secondary: "#D8E1DF",
-          accent: "#3AB1D0",
-          tertiary: "#DE670F",
-        },
         "body-color": "hsl(var(--body-bg))",
         spinner: "hsl(var(--spinner-stroke-color))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        main: "hsl(var(--main))",
+        accent: "hsl(var(--accent))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
