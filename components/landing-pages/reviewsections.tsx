@@ -12,7 +12,7 @@ const ReviewsSection = () => {
       <div className='md:my-24'>
 
         <PreTitleDescription
-          title='Loved By Thousands Of Users WorldWide'
+          title='Loved By Many Users'
           description='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
         />
         <div className='mt-10 grid grid-cols-2 md:grid-cols-3 gap-2'>
