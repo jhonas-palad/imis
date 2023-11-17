@@ -13,18 +13,18 @@ export const PreTitleDescription : React.FC<PreTitleDescriptionProps> = ({
   <div className={`container pl-0 block md:text-${position} text-center`}>
     {
       preTitle && (
-        <p className='text-violet-600 text-sm font-semibold text-brand-primary-700 mb-1'>{preTitle}</p>
+        <p className='text-violet-600 text-sm  font-semibold text-brand-primary-700 mb-1'>{preTitle}</p>
       )
     }
     {
       title && (
 
-        <h2 className='text-3xl md:text-4xl mb-3 font-semibold'>{title}</h2>
+        <h2 className='font-serif text-3xl md:text-4xl mb-3 font-semibold'>{title}</h2>
       )
     }
     {
       description && (
-        <p className='whitespace-pre-wrap font-light leading-loose'>{description}</p>
+        <p className='text-xs md:text-sm whitespace-pre-wrap font-light leading-loose'>{description}</p>
       )
     }
   </div>

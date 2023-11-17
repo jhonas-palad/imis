@@ -1,5 +1,5 @@
 import './globals.css'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Poppins, Lora } from 'next/font/google'
 import { cn } from '@/lib/utils';
 const poppins = Poppins({ 
@@ -14,10 +14,13 @@ const lora = Lora({
 export const metadata: Metadata = {
   title: 'IMIS - Your Professional Service Platform',
   description: 'IMIS is a platform services for homes and businesses. We offer residential and commercial solutions to keep your spaces sparkling clean. Book your cleaning service today.',
-  viewport: 'width=device-width, initial-scale=1.0',
   keywords: 'cleaning service, professional cleaners, residential cleaning, commercial cleaning, house cleaning, office cleaning, IMIS, imisin, batangas cleaning service',
   authors: {name: 'IMIS cleaning services'},
   robots: 'index, follow',
+}
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1.0
 }
 const RootLayout: React.FC<{children: React.ReactNode}> = ({children}) => {
   return (

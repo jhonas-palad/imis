@@ -14,7 +14,7 @@ const TrustedCompanies:React.FC = () => {
     {name:"Youtube", logo:yt}
   ]
   return (
-    <div className='w-full text-center borde -[1px] py-4'>
+    <div className='w-full text-center bg-black/10 py-4'>
       <p className='text-sm text-foreground/50'>Trusted by these companies</p>
       <div className='flex justify-center gap-6 overflow-x-auto '>
         {

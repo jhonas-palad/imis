@@ -1,6 +1,4 @@
 import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
 import Header from '@/components/header'
 
 const IndexLayout: React.FC<{
@@ -14,7 +12,9 @@ const IndexLayout: React.FC<{
           {children}
         </main>
       </div>
-      <footer>This is footer</footer>
+      <footer className='mt-20 p-10 text-center text-xs'>
+       <p>© imis company. 2023 All Rights Reserved</p>
+      </footer>
     </>
   )
 }

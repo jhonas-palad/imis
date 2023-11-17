@@ -32,7 +32,7 @@ const config: Config = {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         main: "hsl(var(--main))",
-        accent: "hsl(var(--accent))",
+        b_accent: "hsl(var(--accent))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
